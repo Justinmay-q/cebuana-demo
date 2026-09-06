@@ -19,7 +19,7 @@ function Submission({ onBack }) {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/submissions",
+        "/api/submissions",
         {
           method: "POST",
           headers: {

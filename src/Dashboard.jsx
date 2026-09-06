@@ -1,4 +1,4 @@
-function Dashboard({ onLogout }) {
+function Dashboard({ applicationId, onLogout }) {
   return (
     <div className="page">
       <div className="dashboard-card">
@@ -34,25 +34,45 @@ function Dashboard({ onLogout }) {
 
           <button
             className="dashboard-button"
-            onClick={() => alert("This is a fictional demo.")}
+            onClick={() =>
+              alert(
+                "Loan Details\n\nSample Amount: ₱10,000\nPurpose: Education"
+              )
+            }
           >
             📄 Loan Details
           </button>
 
           <button
             className="dashboard-button"
-            onClick={() => alert("This is a fictional demo.")}
+            onClick={() =>
+              alert(
+                "Educational Purpose\n\nThis demo is intended to show how an educational loan dashboard could work."
+              )
+            }
           >
             📚 Educational Purpose
           </button>
 
           <button
             className="dashboard-button"
-            onClick={() => alert("This is a fictional demo.")}
+            onClick={() =>
+              alert(
+                "Application Status\n\nStatus: Submitted\n\nYour fictional application has been submitted."
+              )
+            }
           >
             📋 Application Status
           </button>
 
+        </div>
+
+        <div className="status-box">
+          <span>Application Status</span>
+
+          <strong>
+            Submitted
+          </strong>
         </div>
 
         <button

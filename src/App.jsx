@@ -5,18 +5,26 @@ import "./App.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [applicationId, setApplicationId] = useState(null);
 
   if (!loggedIn) {
     return (
       <Submission
-        onLogin={() => setLoggedIn(true)}
+        onLogin={(id) => {
+          setApplicationId(id);
+          setLoggedIn(true);
+        }}
       />
     );
   }
 
   return (
     <Dashboard
-      onLogout={() => setLoggedIn(false)}
+      applicationId={applicationId}
+      onLogout={() => {
+        setLoggedIn(false);
+        setApplicationId(null);
+      }}
     />
   );
 }

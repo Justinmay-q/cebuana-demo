@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Submission({ onBack }) {
+function Submission({ onLogin }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
@@ -40,6 +40,10 @@ function Submission({ onBack }) {
       setPhone("");
       setAddress("");
 
+      setTimeout(() => {
+        onLogin(data.id);
+      }, 1000);
+
     } catch (error) {
       console.error(error);
       setMessage("Could not save the application. Please try again.");
@@ -49,13 +53,6 @@ function Submission({ onBack }) {
   return (
     <div className="page">
       <div className="card">
-
-        <button
-          className="back-button"
-          onClick={onBack}
-        >
-          ← Back
-        </button>
 
         <h1>Cebuana Loan</h1>
 

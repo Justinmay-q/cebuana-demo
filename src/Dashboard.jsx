@@ -1,57 +1,68 @@
-function Dashboard({ onApply }) {
+function Dashboard({ onLogout }) {
   return (
     <div className="page">
+      <div className="dashboard-card">
 
-      <div className="card dashboard-card">
+        <div className="demo-label">
+          FICTIONAL DEMO
+        </div>
 
-        <h1>Cebuana Loan</h1>
+        <h1>Welcome to Cebuana Loan</h1>
 
-        {/* <span className="fictional-label">
-          Fictional Security Awareness Demo
-        </span> */}
-
-        <h2>Welcome to Cebuana Loan</h2>
-
-        <p className="subtitle">
-          Educational Loan Application
+        <p className="dashboard-subtitle">
+          Educational Loan Program
         </p>
 
         <div className="loan-box">
           <h3>Educational Loan</h3>
 
-          {/* <p>
-           Your information.
-          </p> */}
+          <p>
+            This fictional program is intended for
+            educational purposes only.
+          </p>
 
-          <div className="loan-item">
-            <strong>Purpose</strong>
-            <span>Educational expenses</span>
+          <div className="loan-amount">
+            ₱10,000
           </div>
 
-          <div className="loan-item">
-            <strong>Use</strong>
-            <span>School-related expenses</span>
-          </div>
+          <p className="loan-purpose">
+            Sample educational assistance
+          </p>
+        </div>
 
-          {/* <div className="loan-item">
-            <strong>Type</strong>
-            <span>Cybersecurity Awareness</span>
-          </div> */}
+        <div className="dashboard-menu">
+
+          <button
+            className="dashboard-button"
+            onClick={() => alert("This is a fictional demo.")}
+          >
+            📄 Loan Details
+          </button>
+
+          <button
+            className="dashboard-button"
+            onClick={() => alert("This is a fictional demo.")}
+          >
+            📚 Educational Purpose
+          </button>
+
+          <button
+            className="dashboard-button"
+            onClick={() => alert("This is a fictional demo.")}
+          >
+            📋 Application Status
+          </button>
+
         </div>
 
         <button
-          className="primary-button"
-          onClick={onApply}
+          className="logout-button"
+          onClick={onLogout}
         >
-          Apply for Educational Loan
+          Logout
         </button>
 
-        <p className="demo-note">
-          Enter Your password, OTP, or banking information.
-        </p>
-
       </div>
-
     </div>
   );
 }

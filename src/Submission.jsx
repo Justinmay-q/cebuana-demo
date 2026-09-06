@@ -1,91 +1,65 @@
 import { useState } from "react";
 
 function Submission({ onBack }) {
-
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [consent, setConsent] = useState(false);
   const [message, setMessage] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!name || !phone || !address || !consent) {
-    setMessage("Please complete all required fields.");
-    return;
-  }
-
-  try {
-    const response = await fetch("/api/submissions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        phone,
-        address,
-        consent
-      })
-    });
-
-    const text = await response.text();
-
-    console.log("Server response:", text);
-
-    let data;
+    if (!name || !phone || !address) {
+      setMessage("Please complete all required fields.");
+      return;
+    }
 
     try {
-      data = JSON.parse(text);
-    } catch {
-      throw new Error(
-        `Server returned ${response.status}: ${text}`
-      );
+      const response = await fetch("/api/submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          address,
+          consent: true,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      setMessage("Application submitted successfully.");
+
+      setName("");
+      setPhone("");
+      setAddress("");
+
+    } catch (error) {
+      console.error(error);
+      setMessage("Could not save the application. Please try again.");
     }
+  };
 
-    if (!response.ok) {
-      throw new Error(data.message || "Server error");
-    }
-
-    setMessage("Please wait the application is initializing");
-
-    setName("");
-    setPhone("");
-    setAddress("");
-    setConsent(false);
-
-  } catch (error) {
-    console.error("SUBMISSION ERROR:", error);
-
-    setMessage(
-      `Error: ${error.message}`
-    );
-  }
-};
   return (
     <div className="page">
-
       <div className="card">
 
         <button
           className="back-button"
           onClick={onBack}
         >
-          ← Back to Dashboard
+          ← Back
         </button>
 
         <h1>Cebuana Loan</h1>
 
-        {/* <span className="fictional-label">
-          Fictional Security Awareness Demo
-        </span> */}
-
         <h2>Educational Loan Application</h2>
-
-        {/* <p className="subtitle">
-          Basic information only
-        </p> */}
 
         <form onSubmit={handleSubmit}>
 
@@ -93,7 +67,7 @@ const handleSubmit = async (e) => {
 
           <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="Enter your full name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -102,7 +76,7 @@ const handleSubmit = async (e) => {
 
           <input
             type="tel"
-            placeholder="Enter phone number"
+            placeholder="Enter your phone number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -111,24 +85,10 @@ const handleSubmit = async (e) => {
 
           <input
             type="text"
-            placeholder="Enter address"
+            placeholder="Enter your address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-
-          <label className="checkbox-label">
-
-            <input
-              type="checkbox"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-            />
-
-            <span>
-              I accept this application
-            </span>
-
-          </label>
 
           <button
             type="submit"
@@ -145,13 +105,7 @@ const handleSubmit = async (e) => {
           </div>
         )}
 
-        {/* <p className="demo-note">
-          No passwords, OTPs, PINs, bank account numbers,
-          or financial credentials are collected.
-        </p> */}
-
       </div>
-
     </div>
   );
 }

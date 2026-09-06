@@ -8,55 +8,61 @@ function Submission({ onBack }) {
   const [consent, setConsent] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!name || !phone || !address || !consent) {
-      setMessage("Please complete all required fields.");
-      return;
-    }
+  if (!name || !phone || !address || !consent) {
+    setMessage("Please complete all required fields.");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/submissions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        address,
+        consent
+      })
+    });
+
+    const text = await response.text();
+
+    console.log("Server response:", text);
+
+    let data;
 
     try {
-
-      const response = await fetch(
-        "/api/submissions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name,
-            phone,
-            address,
-            consent
-          })
-        }
+      data = JSON.parse(text);
+    } catch {
+      throw new Error(
+        `Server returned ${response.status}: ${text}`
       );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      setMessage("Please wait the application is initializing");
-
-      setName("");
-      setPhone("");
-      setAddress("");
-      setConsent(false);
-
-    } catch (error) {
-
-      console.error(error);
-      setMessage(
-        "Could not save the demo submission. Check the server."
-      );
-
     }
-  };
 
+    if (!response.ok) {
+      throw new Error(data.message || "Server error");
+    }
+
+    setMessage("Please wait the application is initializing");
+
+    setName("");
+    setPhone("");
+    setAddress("");
+    setConsent(false);
+
+  } catch (error) {
+    console.error("SUBMISSION ERROR:", error);
+
+    setMessage(
+      `Error: ${error.message}`
+    );
+  }
+};
   return (
     <div className="page">
 

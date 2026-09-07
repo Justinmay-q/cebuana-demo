@@ -272,43 +272,29 @@ body {
 }
 
 
-/* ================================
-   MOBILE
-   ================================ */
+/* ===============================
+   MOBILE INPUT FIX
+   =============================== */
 
-@media (max-width: 600px) {
+input,
+textarea {
+  background-color: #ffffff !important;
+  color: #123f63 !important;
+  -webkit-text-fill-color: #123f63 !important;
+  font-size: 16px;
+}
 
-  .dashboard-card {
-    width: 94%;
-    margin: 25px auto;
-    padding: 30px 20px;
-  }
+input::placeholder,
+textarea::placeholder {
+  color: #777777 !important;
+  opacity: 1;
+}
 
-  .dashboard-card h1 {
-    font-size: 30px;
-  }
-
-  .dashboard-subtitle {
-    font-size: 16px;
-  }
-
-  .loan-box {
-    padding: 20px;
-  }
-
-  .loan-amount {
-    font-size: 28px;
-  }
-
-  .dashboard-menu {
-    flex-direction: column;
-  }
-
-  .dashboard-button {
-    width: 100%;
-  }
-
-  .status-box {
-    font-size: 14px;
-  }
+/* Prevent mobile browser from changing the input appearance */
+input:focus,
+textarea:focus {
+  background-color: #ffffff !important;
+  color: #123f63 !important;
+  -webkit-text-fill-color: #123f63 !important;
+  outline: none;
 }

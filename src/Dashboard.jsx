@@ -3,9 +3,13 @@ function Dashboard({ applicationId, onLogout }) {
     <div className="page">
       <div className="dashboard-card">
 
-        <div className="demo-label">
-          FICTIONAL DEMO
-        </div>
+         {/* Cebuana Logo */}
+      <div className="logo-container">
+      <img
+      src="/cebuana.png"
+       alt="Cebuana"
+        className="cebuana-logo"
+          />
 
         <h1>Welcome to Cebuana Loan</h1>
 
@@ -47,7 +51,7 @@ function Dashboard({ applicationId, onLogout }) {
             className="dashboard-button"
             onClick={() =>
               alert(
-                "Educational Purpose\n\nThis demo is intended to show how an educational loan dashboard could work."
+                "\n\nThis educational loan is intended to provide financial assistance for qualified educational expenses such as tuition, school fees, books, and other learning-related needs."
               )
             }
           >
@@ -68,7 +72,7 @@ function Dashboard({ applicationId, onLogout }) {
         </div>
 
         <div className="status-box">
-          <span>Application Status</span>
+          <span>Application Status: </span>
 
           <strong>
             Submitted
@@ -81,7 +85,7 @@ function Dashboard({ applicationId, onLogout }) {
         >
           Logout
         </button>
-
+             </div>
       </div>
     </div>
   );

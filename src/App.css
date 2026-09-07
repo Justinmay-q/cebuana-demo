@@ -61,9 +61,10 @@ body {
 .submission-container label {
   display: block;
   text-align: left;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   color: white;
+  margin-bottom: 8px;
 }
 .form-group {
   margin-bottom: 18px;
@@ -76,13 +77,25 @@ body {
   border: 1px solid #ccc;
   border-radius: 7px;
   box-sizing: border-box;
+
+  background-color: #ffffff !important;
+  color: #123f63 !important;
+  -webkit-text-fill-color: #123f63 !important;
+
   font-size: 15px;
-  background: white;
+}
+
+.submission-container input[type="text"]::placeholder {
+  color: #777777 !important;
+  opacity: 1;
 }
 
 .submission-container input[type="text"]:focus {
   outline: none;
   border: 2px solid #ffffff;
+  background-color: #ffffff !important;
+  color: #123f63 !important;
+  -webkit-text-fill-color: #123f63 !important;
 }
 
 /* Agreement */

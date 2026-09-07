@@ -22,19 +22,21 @@ function Submission({ onLogin }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/submissions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          phone,
-          address,
-          consent: agreed,
-        }),
-      });
-
+   const response = await fetch(
+  "https://cebuana.up.railway.app/api/submissions",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      phone,
+      address,
+      consent: agreed,
+    }),
+  }
+);
       const data = await response.json();
 
       if (!response.ok) {

@@ -5,7 +5,7 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const cors = require("cors");
+
 app.use(cors());
 app.use(express.json());
 
@@ -14,7 +14,7 @@ app.use(express.json());
 // ===============================
 const db = mysql.createConnection(
   process.env.MYSQL_PUBLIC_URL
-);
+); 
 
 db.connect((err) => {
   if (err) {

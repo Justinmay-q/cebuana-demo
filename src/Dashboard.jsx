@@ -21,7 +21,6 @@ function Dashboard({ applicationId, onLogout }) {
           <h3>Educational Loan</h3>
 
           <p>
-            This fictional program is intended for
             educational purposes only.
           </p>
 
@@ -30,7 +29,7 @@ function Dashboard({ applicationId, onLogout }) {
           </div>
 
           <p className="loan-purpose">
-            Sample educational assistance
+             Educational assistance
           </p>
         </div>
 
@@ -62,7 +61,7 @@ function Dashboard({ applicationId, onLogout }) {
             className="dashboard-button"
             onClick={() =>
               alert(
-                "Application Status\n\nStatus: Submitted\n\nYour fictional application has been submitted."
+                "Application Status\n\nStatus: Submitted\n\nYour application has been submitted."
               )
             }
           >
